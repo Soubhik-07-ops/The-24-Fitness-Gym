@@ -1,0 +1,476 @@
+/* src/components/Profile/Profile.module.css */
+
+.profileContainer {
+    min-height: calc(100vh - 8rem);
+    padding: 6rem 1rem 2rem;
+    background: #000;
+    color: white;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.gradientText {
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #9ca3af;
+    max-width: 40rem;
+    margin: 0 auto;
+}
+
+.loadingState {
+    text-align: center;
+    padding-top: 5rem;
+    font-size: 1.5rem;
+    color: #9ca3af;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+    color: #f97316;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.errorBanner {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.profileContent {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .profileContent {
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profileContent {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .profileContainer {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Avatar Section */
+.avatarSection {
+    display: flex;
+    justify-content: center;
+}
+
+.avatarContainer {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.avatarWrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f97316;
+    display: block;
+    background: #1f2937;
+}
+
+.avatarPlaceholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 4px solid #f97316;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    margin: 0 auto;
+    position: relative;
+}
+
+.imageErrorText {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    color: #ef4444;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.uploadOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    gap: 0.5rem;
+}
+
+.uploadOverlay span {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Avatar Actions */
+.avatarActions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.avatarUpload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #f97316;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    width: 100%;
+}
+
+.avatarUpload:hover:not(:disabled) {
+    background: #ea580c;
+    transform: translateY(-2px);
+}
+
+.avatarUpload:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.deleteAvatarButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.deleteAvatarButton:hover:not(:disabled) {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.deleteAvatarButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* File Info */
+.fileInfo {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.fileInfo p {
+    margin: 0.25rem 0;
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+/* Form Section */
+.formSection {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 1px solid #374151;
+    border-radius: 1.5rem;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .formSection {
+        padding: 1.5rem;
+    }
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #374151;
+}
+
+.sectionHeader h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .sectionHeader {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .sectionHeader h2 {
+        font-size: 1.25rem;
+    }
+}
+
+.editButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.editButton:hover:not(:disabled) {
+    background: #ea580c;
+    transform: translateY(-2px);
+}
+
+.editButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Form Styles */
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .formGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #d1d5db;
+}
+
+.label svg {
+    color: #f97316;
+}
+
+.input {
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3);
+}
+
+.displayValue {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Class Types */
+.classTypesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+}
+
+@media (max-width: 480px) {
+    .classTypesGrid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.5rem;
+    }
+}
+
+.classTypeButton {
+    background: #111827;
+    border: 1px solid #374151;
+    color: #d1d5db;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.classTypeButton:hover {
+    border-color: #f97316;
+    color: #f97316;
+}
+
+.classTypeButton.selected {
+    background: #f97316;
+    color: white;
+    border-color: #f97316;
+}
+
+.classTypesDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Form Actions */
+.formActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+}
+
+@media (max-width: 480px) {
+    .formActions {
+        flex-direction: column;
+    }
+}
+
+.saveButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    justify-content: center;
+}
+
+.saveButton:hover:not(:disabled) {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+.saveButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.cancelButton:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+}

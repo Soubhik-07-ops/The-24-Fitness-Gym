@@ -1,0 +1,209 @@
+.features {
+    padding: 5rem 0;
+    background: #111827;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 3.75rem;
+    }
+}
+
+.gradientText {
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #d1d5db;
+    max-width: 48rem;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .subtitle {
+        font-size: 1.5rem;
+    }
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .featuresGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .featuresGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.featureCard {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 1px solid #374151;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.featureCard:hover {
+    transform: translateY(-0.5rem);
+    border-color: #f97316;
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
+}
+
+.featureCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.featureCard:hover::before {
+    opacity: 0.05;
+}
+
+.featureContent {
+    position: relative;
+    z-index: 10;
+}
+
+.iconContainer {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.featureCard:hover .iconContainer {
+    transform: scale(1.1);
+}
+
+.iconContainerBlue {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.iconContainerPurple {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.iconContainerGreen {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.iconContainerOrange {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.iconContainerRed {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.iconContainerYellow {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.iconContainerGray {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+}
+
+.iconContainerIndigo {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.featureTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.featureCard:hover .featureTitle {
+    color: #f97316;
+}
+
+.featureDescription {
+    color: #9ca3af;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.featureCard:hover .featureDescription {
+    color: #d1d5db;
+}
+
+/* Background decoration */
+.backgroundDecoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.decorationCircle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    opacity: 0.05;
+    filter: blur(40px);
+}
+
+.circle1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -150px;
+}
+
+.circle2 {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    left: -100px;
+}

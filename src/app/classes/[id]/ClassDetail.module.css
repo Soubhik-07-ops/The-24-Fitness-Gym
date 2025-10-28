@@ -1,0 +1,250 @@
+/* src/app/classes/[id]/ClassDetail.module.css */
+.classDetailContainer {
+    min-height: calc(100vh - 8rem);
+    padding: 6rem 1rem 2rem;
+    background: #000;
+    color: white;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #374151;
+    color: #d1d5db;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.backButton:hover {
+    background: #4b5563;
+    color: white;
+}
+
+.loadingState,
+.errorState {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.errorState h2 {
+    color: #ef4444;
+    margin-bottom: 1rem;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #374151;
+    border-top: 4px solid #f97316;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Class Header */
+.classHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.classInfo {
+    flex: 1;
+}
+
+.classTitleSection {
+    margin-bottom: 1.5rem;
+}
+
+.classTitle {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.classCategory {
+    background: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.classMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #d1d5db;
+}
+
+.metaItem svg {
+    color: #f97316;
+}
+
+.ratingOverview {
+    margin-top: 1rem;
+}
+
+.reviewButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.reviewButton:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+}
+
+/* Class Description */
+.classDescription {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 1px solid #374151;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.classDescription h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.classDescription p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Reviews Section */
+.reviewsSection {
+    margin-bottom: 3rem;
+}
+
+.reviewsLayout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.statsColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.reviewPrompt {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 1px solid #374151;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.reviewPrompt h4 {
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.reviewPrompt p {
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.loginButton {
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.loginButton:hover {
+    background: #ea580c;
+}
+
+.reviewsColumn {
+    min-height: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .reviewsLayout {
+        grid-template-columns: 300px 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .classDetailContainer {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .classHeader {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .classTitle {
+        font-size: 2.5rem;
+    }
+
+    .reviewsLayout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .statsColumn {
+        order: 2;
+    }
+
+    .reviewsColumn {
+        order: 1;
+    }
+}

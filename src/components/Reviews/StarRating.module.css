@@ -1,0 +1,39 @@
+/* src/components/Reviews/StarRating.module.css */
+.starRating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.star {
+    background: none;
+    border: none;
+    color: #d1d5db;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: all 0.2s ease;
+    border-radius: 0.25rem;
+}
+
+.star:hover:not(.readonly) {
+    transform: scale(1.2);
+}
+
+.star.filled {
+    color: #fbbf24;
+}
+
+.star.readonly {
+    cursor: default;
+}
+
+.ratingLabel {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 500;
+}

@@ -1,0 +1,389 @@
+/* MembershipPlans.module.css
+   Responsive: 3-per-row by default (>=1024px).
+   When viewport < 1024px -> swipeable single-row carousel with snapping.
+*/
+
+.membership {
+    padding: 5rem 1rem;
+    background: #000;
+    position: relative;
+    overflow: visible;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* container */
+.container {
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+/* header */
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    color: #fff;
+    font-weight: 900;
+    margin-bottom: .5rem;
+    line-height: 1.05;
+}
+
+.subtitle {
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    color: #d1d5db;
+    max-width: 58rem;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Controls row acts as container for fades + grid */
+.controlsRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+/* fade overlays for mobile */
+.fadeLeft,
+.fadeRight {
+    width: 2.5rem;
+    pointer-events: none;
+    z-index: 3;
+    display: none;
+}
+
+.fadeLeft {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), transparent);
+    margin-left: -0.75rem;
+}
+
+.fadeRight {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.9), transparent);
+    margin-right: -0.75rem;
+}
+
+/* --- GRID MODE (desktop) --- */
+.plansGrid.gridMode {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+    align-items: stretch;
+    padding: 0;
+}
+
+/* --- SWIPE MODE (mobile/tablet) --- */
+.plansGrid.swipeMode {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.75rem 0.25rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* ie */
+}
+
+/* hide webkit scrollbar */
+.plansGrid.swipeMode::-webkit-scrollbar {
+    display: none;
+}
+
+/* The card */
+.planCard {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 1px solid #374151;
+    border-radius: 1.25rem;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;
+    position: relative;
+    transition: transform .28s cubic-bezier(.2, .9, .2, 1), box-shadow .28s;
+}
+
+/* desktop hover effect only for pointer-capable devices */
+@media (hover:hover) and (pointer:fine) {
+    .planCard:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 6px 18px rgba(249, 115, 22, 0.08);
+        border-color: #f97316;
+    }
+}
+
+/* swipe mode card sizing */
+.plansGrid.swipeMode .planCard {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+    border-radius: 1rem;
+    padding: 1.25rem;
+}
+
+/* desktop card sizing (ensures 3 per row) */
+@media (min-width:1024px) {
+    .plansGrid.swipeMode {
+        /* in case JS toggles class names */
+        display: grid;
+    }
+
+    .planCard {
+        min-height: 340px;
+        padding: 2rem;
+        border-radius: 1.25rem;
+    }
+}
+
+/* popular style */
+.planCardPopular {
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    color: #fff;
+    border: 0;
+    transform: translateZ(0);
+}
+
+.popularBadge {
+    position: absolute;
+    top: -0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fef3c7;
+    color: #92400e;
+    padding: .35rem .9rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: .82rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* header within card */
+.planHeader {
+    margin-bottom: 1.15rem;
+    text-align: center;
+}
+
+.planName {
+    font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .5rem;
+}
+
+.planPrice {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: .4rem;
+}
+
+.price {
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+
+.period {
+    font-size: .95rem;
+    color: #cbd5e1;
+}
+
+/* features */
+.featuresList {
+    margin-bottom: 1.25rem;
+    padding-top: .25rem;
+    display: block;
+}
+
+.featureItem {
+    display: flex;
+    gap: .6rem;
+    align-items: center;
+    color: #d1d5db;
+    font-size: .95rem;
+    margin-bottom: .7rem;
+}
+
+.featureIcon {
+    color: #10b981;
+    flex-shrink: 0;
+}
+
+/* button */
+.getStartedButton {
+    width: 100%;
+    padding: .9rem;
+    border-radius: .9rem;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.getStartedButton:active {
+    transform: translateY(1px);
+}
+
+/* color variations */
+.buttonBasic {
+    background: #f97316;
+    color: #fff;
+}
+
+.buttonBasic:hover {
+    background: #ea580c;
+}
+
+.buttonPopular {
+    background: #ffffff;
+    color: #dc2626;
+}
+
+.buttonPopular:hover {
+    background: #fef3c7;
+}
+
+.buttonElite {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #f97316;
+}
+
+.buttonElite:hover {
+    background: #f97316;
+    color: #000;
+}
+
+/* gradient fades visible only in swipe mode */
+@media (max-width:1023px) {
+
+    .fadeLeft,
+    .fadeRight {
+        display: block;
+        position: relative;
+        height: 160px;
+        align-self: stretch;
+        border-radius: 6px;
+    }
+
+    .fadeLeft {
+        margin-left: 0;
+        width: 3.25rem;
+    }
+
+    .fadeRight {
+        margin-right: 0;
+        width: 3.25rem;
+    }
+}
+
+/* swipe control (arrows + dots) */
+.swipeControls {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.navButton {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: .55rem;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .18s ease;
+}
+
+.navButton:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.navButton:hover:not(:disabled) {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* dots */
+.dots {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.dot {
+    width: .55rem;
+    height: .55rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    cursor: pointer;
+    transition: all .18s ease;
+}
+
+.dotActive {
+    transform: scale(1.25);
+    background: #f97316;
+    box-shadow: 0 6px 14px rgba(249, 115, 22, 0.18);
+}
+
+/* ensure good spacing on small devices */
+@media (max-width:480px) {
+    .plansGrid.swipeMode .planCard {
+        flex: 0 0 88%;
+        padding: 1rem;
+    }
+
+    .popularBadge {
+        top: -0.5rem;
+        font-size: .78rem;
+        padding: .3rem .7rem;
+    }
+
+    .fadeLeft,
+    .fadeRight {
+        height: 120px;
+    }
+
+    .title {
+        font-size: clamp(1.6rem, 7.5vw, 2.25rem);
+    }
+}
+
+/* Accessibility: focus styles */
+.planCard:focus-within {
+    outline: 2px solid rgba(249, 115, 22, 0.15);
+    outline-offset: 6px;
+}
+
+.getStartedButton:focus {
+    outline: 3px solid rgba(249, 115, 22, 0.14);
+    outline-offset: 4px;
+}
+
+/* small helper to avoid text selection during swipe */
+.plansGrid.swipeMode {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

@@ -1,0 +1,376 @@
+/* src/components/Dashboard/Dashboard.module.css */
+
+.dashboardContainer {
+    min-height: calc(100vh - 8rem);
+    padding: 6rem 1rem 2rem;
+    background: #000;
+    color: white;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.loading {
+    text-align: center;
+    font-size: 2rem;
+    color: #9ca3af;
+}
+
+/* Profile Header */
+.profileHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 1px solid #374151;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.profileInfo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.avatarContainer {
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f97316;
+}
+
+.avatarPlaceholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 3px solid #f97316;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+}
+
+.profileText {
+    flex: 1;
+}
+
+.welcomeTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.gradientText {
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.welcomeSubtitle {
+    font-size: 1.25rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+.liveBadge {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+.editProfileButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f97316;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.editProfileButton:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+}
+
+/* Connection Status */
+.connectionStatus {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.connectionStatus.online {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+.connectionStatus.offline {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+.widgetGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .widgetGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .profileHeader {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .profileInfo {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .welcomeTitle {
+        font-size: 2rem;
+    }
+
+    .welcomeSubtitle {
+        font-size: 1.125rem;
+    }
+}
+
+.widget {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 1px solid #374151;
+    border-radius: 1.5rem;
+    padding: 2rem;
+}
+
+.widgetHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.widgetHeader h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.viewAllLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #f97316;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.viewAllLink:hover {
+    color: #ea580c;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.emptyState p {
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.bookClassLink {
+    display: inline-block;
+    background: #f97316;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.bookClassLink:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+}
+
+.classesList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.classItem {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.classItem:hover {
+    border-color: #f97316;
+    transform: translateY(-2px);
+}
+
+.classInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.classHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.className {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.classCategory {
+    background: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+    padding: 0.25rem 0.5rem;
+    border-radius: 99px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.classTrainer,
+.classTime,
+.classDuration {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+.classTrainer svg,
+.classTime svg,
+.classDuration svg {
+    color: #f97316;
+}
+
+.cancelButton {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.cancelButton:hover:not(:disabled) {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+.cancelButton:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Profile Stats */
+.profileStats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+    border: 1px solid #374151;
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    border-color: #f97316;
+    transform: translateY(-2px);
+}
+
+.statNumber {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #f97316;
+    margin-bottom: 0.25rem;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    font-weight: 600;
+}
+
+/* Profile Actions */
+.profileActions {
+    margin-top: 1.5rem;
+}
+
+.actionButton {
+    display: inline-block;
+    background: #f97316;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+}
+
+.actionButton:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+}
