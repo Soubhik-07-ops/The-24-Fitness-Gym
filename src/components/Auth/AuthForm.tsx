@@ -2,22 +2,22 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// 1. IMPORT PATH UPDATED
 import { supabase } from '@/lib/supabaseClient';
 import styles from './AuthForm.module.css';
 
 export default function AuthForm() {
-    const [isSigningUp, setIsSigningUp] = useState(true); // Toggle between Sign Up and Log In
+    const [isSigningUp, setIsSigningUp] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState(''); // To show success or error messages
+    const [fullName, setFullName] = useState('');
+    const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setMessage(''); // Clear previous messages
+        setMessage('');
 
         try {
             if (isSigningUp) {
@@ -25,11 +25,21 @@ export default function AuthForm() {
                 const { data, error } = await supabase.auth.signUp({
                     email: email,
                     password: password,
+                    options: {
+                        data: {
+                            full_name: fullName
+                        }
+                    }
                 });
 
                 if (error) throw error;
+
                 setMessage('Account created successfully! Please log in.');
-                setIsSigningUp(false); // Switch to log in view
+                setIsSigningUp(false);
+                // Clear form
+                setEmail('');
+                setPassword('');
+                setFullName('');
             } else {
                 // Log In Logic
                 const { data, error } = await supabase.auth.signInWithPassword({
@@ -39,16 +49,14 @@ export default function AuthForm() {
 
                 if (error) throw error;
 
-                // 2. REDIRECT LOGIC ADDED
                 setMessage('Logged in successfully! Redirecting...');
 
-                // Redirect to homepage after a short delay
                 setTimeout(() => {
-                    router.push('/'); // Go to homepage
-                    router.refresh(); // Force a refresh to update server components
+                    window.location.href = '/';
                 }, 1000);
             }
         } catch (error: any) {
+            console.error('Auth error:', error);
             setMessage(`Error: ${error.message}`);
         } finally {
             setLoading(false);
@@ -68,6 +76,20 @@ export default function AuthForm() {
                 </p>
 
                 <form onSubmit={handleSubmit} className={styles.form}>
+                    {isSigningUp && (
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="fullName">Full Name</label>
+                            <input
+                                id="fullName"
+                                type="text"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                required
+                                placeholder="John Doe"
+                            />
+                        </div>
+                    )}
+
                     <div className={styles.inputGroup}>
                         <label htmlFor="email">Email</label>
                         <input
@@ -79,6 +101,7 @@ export default function AuthForm() {
                             placeholder="you@example.com"
                         />
                     </div>
+
                     <div className={styles.inputGroup}>
                         <label htmlFor="password">Password</label>
                         <input
@@ -88,6 +111,7 @@ export default function AuthForm() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             placeholder="••••••••"
+                            minLength={6}
                         />
                     </div>
 
@@ -104,11 +128,21 @@ export default function AuthForm() {
                     </button>
                 </form>
 
-                {message && <p className={styles.message}>{message}</p>}
+                {message && (
+                    <p className={`${styles.message} ${message.includes('Error') ? styles.error : styles.success}`}>
+                        {message}
+                    </p>
+                )}
 
                 <div className={styles.toggleMode}>
                     <button
-                        onClick={() => setIsSigningUp(!isSigningUp)}
+                        onClick={() => {
+                            setIsSigningUp(!isSigningUp);
+                            setMessage('');
+                            setEmail('');
+                            setPassword('');
+                            setFullName('');
+                        }}
                         className={styles.toggleButton}
                     >
                         {isSigningUp
