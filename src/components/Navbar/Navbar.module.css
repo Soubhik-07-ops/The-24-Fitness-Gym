@@ -59,6 +59,10 @@
     text-decoration: none;
     transition: all 0.25s ease;
     position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0;
 }
 
 .menuItem:hover {
@@ -90,6 +94,8 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .joinButton:hover {
@@ -143,7 +149,13 @@
     padding: 0.8rem 1rem;
     border-radius: 0.5rem;
     transition: all 0.25s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
 }
+
 
 .mobileMenuItem:hover {
     background: rgba(249, 115, 22, 0.1);

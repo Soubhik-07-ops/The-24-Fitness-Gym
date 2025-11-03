@@ -28,10 +28,16 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         checkSession();
-    }, []);
+    }, [pathname]);
 
     const checkSession = async () => {
         try {
+            // Don't check session on login page
+            if (pathname === '/admin/login') {
+                setLoading(false);
+                return;
+            }
+
             const response = await fetch('/api/admin/validate', {
                 credentials: 'include',
                 cache: 'no-store'
@@ -43,16 +49,16 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
             } else {
                 setAdmin(null);
                 // Only redirect if we're on a protected admin page (not login page)
-                if (pathname?.startsWith('/admin') && pathname !== '/admin/login') {
-                    window.location.href = '/admin/login';
+                if (pathname?.startsWith('/admin')) {
+                    router.push('/admin/login');
                 }
             }
         } catch (error) {
             console.error('Session check error:', error);
             setAdmin(null);
             // Redirect to login on error (except if already on login)
-            if (pathname?.startsWith('/admin') && pathname !== '/admin/login') {
-                window.location.href = '/admin/login';
+            if (pathname?.startsWith('/admin')) {
+                router.push('/admin/login');
             }
         } finally {
             setLoading(false);
@@ -75,16 +81,21 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
                 throw new Error(data.error || 'Login failed');
             }
 
-            console.log('✅ Login successful:', data);
-
-            // Set admin state immediately
+            // Set admin state
             setAdmin(data.admin);
 
-            // Small delay to ensure cookie is set
-            await new Promise(resolve => setTimeout(resolve, 100));
+            // Verify session is properly set before redirecting
+            const verifyResponse = await fetch('/api/admin/validate', {
+                credentials: 'include',
+                cache: 'no-store'
+            });
 
-            // Force reload to ensure cookie is picked up
-            window.location.href = '/admin';
+            if (verifyResponse.ok) {
+                // Use router for smoother navigation
+                router.push('/admin');
+            } else {
+                throw new Error('Session validation failed');
+            }
         } catch (error: any) {
             console.error('❌ Login error:', error);
             throw new Error(error.message || 'Invalid email or password');

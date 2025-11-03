@@ -12,10 +12,10 @@ export default function Footer() {
                     <div className={styles.brand}>
                         <div className={styles.logo}>
                             <Dumbbell size={32} color="#f97316" />
-                            <span className={styles.logoText}>24 FITNESS</span>
+                            <span className={styles.logoText}>THE 24 FITNESS</span>
                         </div>
                         <p className={styles.description}>
-                            Your premier 24/7 fitness destination. Transform your body,
+                            Your premier the 24/7 fitness destination. Transform your body,
                             mind, and life with state-of-the-art equipment and expert guidance.
                         </p>
                         <div className={styles.socialLinks}>
@@ -76,7 +76,7 @@ export default function Footer() {
                             </div>
                             <div className={styles.contactItem}>
                                 <Dumbbell size={18} />
-                                <span>Open 24/7 • 365 Days</span>
+                                <span>Open 24/6 • 313 Days</span>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ export default function Footer() {
                 {/* Bottom Footer */}
                 <div className={styles.bottomFooter}>
                     <div className={styles.copyright}>
-                        © 2024 24 Fitness Gym. All rights reserved.
+                        © 2024 The 24 Fitness Gym. All rights reserved.
                     </div>
                     <div className={styles.legalLinks}>
                         <a href="#" className={styles.legalLink}>Privacy Policy</a>

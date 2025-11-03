@@ -118,11 +118,11 @@ export default function Dashboard() {
 
             console.log('Raw data from Supabase:', data);
 
-            // ✅ Safely map Supabase result to our type
+            // ✅ Safely map Supabase result to our type and normalize bigint ids
             const typedData: BookingResponse[] = (data || []).map((item: any) => ({
-                id: item.id,
+                id: Number(item.id),
                 classes: {
-                    id: item.classes?.id ?? 0,
+                    id: Number(item.classes?.id) || 0,
                     name: item.classes?.name ?? 'Unknown Class',
                     schedule: item.classes?.schedule ?? '',
                     trainer_name: item.classes?.trainer_name ?? 'Unknown Trainer',

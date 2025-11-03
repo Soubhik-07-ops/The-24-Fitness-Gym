@@ -7,6 +7,7 @@ import styles from './Navbar.module.css'
 import { supabase } from '@/lib/supabaseClient'
 import { type User } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
@@ -14,7 +15,13 @@ export default function Navbar() {
     const [user, setUser] = useState<User | null>(null)
     const router = useRouter()
 
-    const menuItems = ['Home', 'Features', 'Membership', 'Trainers', 'Contact']
+    const menuItems = [
+        { name: 'Home', path: '/' },
+        { name: 'Features', path: '/features' },
+        { name: 'Membership', path: '/membership' },
+        { name: 'Trainers', path: '/trainers' },
+        { name: 'Contact', path: '/contact' }
+    ]
 
     // ✅ Handle mount + auth + responsive behavior
     useEffect(() => {
@@ -44,12 +51,17 @@ export default function Navbar() {
             authListener.subscription.unsubscribe()
             window.removeEventListener('resize', handleResize)
         }
-    }, [router, isOpen]) // <— add `isOpen` here to respond to state changes
+    }, [router, isOpen])
 
     const handleLogout = async () => {
         await supabase.auth.signOut()
         setIsOpen(false)
         router.push('/')
+    }
+
+    const handleNavClick = (path: string) => {
+        setIsOpen(false)
+        router.push(path)
     }
 
     if (!mounted) return null
@@ -60,29 +72,39 @@ export default function Navbar() {
                 {/* Logo */}
                 <div className={styles.logo} onClick={() => router.push('/')}>
                     <Dumbbell size={28} color="#f97316" />
-                    <span className={styles.logoText}>24 FITNESS</span>
+                    <span className={styles.logoText}> FITNESS</span>
                 </div>
 
                 {/* Desktop Menu */}
                 <div className={styles.desktopMenu}>
                     {menuItems.map((item) => (
-                        <a key={item} href={`#${item.toLowerCase()}`} className={styles.menuItem}>
-                            {item}
-                        </a>
+                        <button
+                            key={item.name}
+                            onClick={() => handleNavClick(item.path)}
+                            className={styles.menuItem}
+                        >
+                            {item.name}
+                        </button>
                     ))}
                     {user && (
-                        <a href="/dashboard" className={styles.menuItem}>
+                        <button
+                            onClick={() => handleNavClick('/dashboard')}
+                            className={styles.menuItem}
+                        >
                             Dashboard
-                        </a>
+                        </button>
                     )}
                     {user ? (
                         <button onClick={handleLogout} className={styles.joinButton}>
                             Log Out
                         </button>
                     ) : (
-                        <a href="/signup" className={styles.joinButton}>
+                        <button
+                            onClick={() => handleNavClick('/signup')}
+                            className={styles.joinButton}
+                        >
                             Join Now
-                        </a>
+                        </button>
                     )}
                 </div>
 
@@ -108,23 +130,21 @@ export default function Navbar() {
                     >
                         <div className={styles.mobileMenuInner}>
                             {menuItems.map((item) => (
-                                <a
-                                    key={item}
-                                    href={`#${item.toLowerCase()}`}
+                                <button
+                                    key={item.name}
+                                    onClick={() => handleNavClick(item.path)}
                                     className={styles.mobileMenuItem}
-                                    onClick={() => setIsOpen(false)}
                                 >
-                                    {item}
-                                </a>
+                                    {item.name}
+                                </button>
                             ))}
                             {user && (
-                                <a
-                                    href="/dashboard"
+                                <button
+                                    onClick={() => handleNavClick('/dashboard')}
                                     className={styles.mobileMenuItem}
-                                    onClick={() => setIsOpen(false)}
                                 >
                                     Dashboard
-                                </a>
+                                </button>
                             )}
                             <div className={styles.mobileButtonContainer}>
                                 {user ? (
@@ -132,9 +152,12 @@ export default function Navbar() {
                                         Log Out
                                     </button>
                                 ) : (
-                                    <a href="/signup" className={styles.mobileJoinButton}>
+                                    <button
+                                        onClick={() => handleNavClick('/signup')}
+                                        className={styles.mobileJoinButton}
+                                    >
                                         Join Now
-                                    </a>
+                                    </button>
                                 )}
                             </div>
                         </div>

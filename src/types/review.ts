@@ -1,11 +1,11 @@
 // src/types/review.ts
 export interface Review {
     classes: any;
-    id: number;
+    id: number | string;
     created_at: string;
     updated_at: string;
     user_id: string;
-    class_id: number;
+    class_id: number | string;
     rating: number;
     comment: string | null;
     is_approved: boolean;

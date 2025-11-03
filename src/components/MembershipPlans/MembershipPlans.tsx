@@ -12,7 +12,7 @@ const plans = [
         period: '/month',
         popular: false,
         features: [
-            '24/7 Gym Access',
+            '24/6 Gym Access',
             'Standard Equipment',
             'Locker Room Access',
             'Free Wi-Fi',

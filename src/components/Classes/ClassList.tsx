@@ -57,18 +57,22 @@ export default function ClassList() {
 
                 const classesWithCapacity = await Promise.all(
                     (classesData || []).map(async (classItem) => {
+                        // Normalize id (Postgres bigint may come as string)
+                        const classId = Number(classItem.id);
+
                         const [bookingsData, reviewStats] = await Promise.all([
                             supabase
                                 .from('bookings')
                                 .select('id')
-                                .eq('class_id', classItem.id),
-                            fetchReviewStats(classItem.id)
+                                .eq('class_id', classId),
+                            fetchReviewStats(classId)
                         ]);
 
                         if (bookingsData.error) throw bookingsData.error;
 
                         return {
                             ...classItem,
+                            id: classId,
                             current_bookings: bookingsData.data?.length || 0,
                             category: classItem.category || 'General',
                             review_stats: reviewStats || {
@@ -182,16 +186,18 @@ export default function ClassList() {
         if (classesData) {
             const classesWithCapacity = await Promise.all(
                 classesData.map(async (classItem) => {
+                    const classId = Number(classItem.id);
                     const [bookingsData, reviewStats] = await Promise.all([
                         supabase
                             .from('bookings')
                             .select('id')
-                            .eq('class_id', classItem.id),
-                        fetchReviewStats(classItem.id)
+                            .eq('class_id', classId),
+                        fetchReviewStats(classId)
                     ]);
 
                     return {
                         ...classItem,
+                        id: classId,
                         current_bookings: bookingsData.data?.length || 0,
                         category: classItem.category || 'General',
                         review_stats: reviewStats || {
@@ -214,7 +220,7 @@ export default function ClassList() {
 
             if (error) throw error;
 
-            const bookedClassIds = data?.map(booking => booking.class_id) || [];
+            const bookedClassIds = data?.map(booking => Number(booking.class_id)) || [];
             setUserBookings(bookedClassIds);
         } catch (error) {
             console.error('Error fetching user bookings:', error);

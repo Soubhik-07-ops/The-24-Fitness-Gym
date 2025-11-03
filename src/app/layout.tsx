@@ -6,8 +6,8 @@ import { AdminAuthProvider } from '@/contexts/AdminAuthContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: '24Fitness - Premium Gym & Fitness Center',
-  description: 'Join 24Fitness for premium gym facilities, personal training, and fitness classes',
+  title: 'The24Fitness - Premium Gym & Fitness Center',
+  description: 'Join The24Fitness for premium gym facilities, personal training, and fitness classes',
 };
 
 export default function RootLayout({

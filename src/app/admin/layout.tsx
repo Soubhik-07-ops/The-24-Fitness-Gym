@@ -77,7 +77,7 @@ export default function AdminLayout({
             {/* Sidebar */}
             <div className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
                 <div className={styles.sidebarHeader}>
-                    <h2 className={styles.logo}>24FITNESS ADMIN</h2>
+                    <h2 className={styles.logo}>THE24FITNESS ADMIN</h2>
                     <button
                         onClick={() => setSidebarOpen(false)}
                         className={styles.closeButton}

@@ -71,7 +71,7 @@ export default function AuthForm() {
                 </h2>
                 <p className={styles.subtitle}>
                     {isSigningUp
-                        ? 'Join 24 Fitness and start your journey.'
+                        ? 'Join The 24 Fitness and start your journey.'
                         : 'Log in to access your account.'}
                 </p>
 

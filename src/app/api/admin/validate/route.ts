@@ -17,20 +17,24 @@ export async function GET(request: NextRequest) {
             );
         }
 
+        // Validate session (RPC or fallback inside validateAdminSession)
         const admin = await validateAdminSession(token);
 
         if (!admin) {
-            return NextResponse.json(
+            const response = NextResponse.json(
                 { error: 'Invalid or expired session' },
                 { status: 401 }
             );
+            // Clear invalid session cookie
+            response.cookies.delete('admin_token');
+            return response;
         }
 
         return NextResponse.json({ admin });
     } catch (error) {
         console.error('Admin validation error:', error);
         return NextResponse.json(
-            { error: 'Internal server error' },
+            { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
             { status: 500 }
         );
     }

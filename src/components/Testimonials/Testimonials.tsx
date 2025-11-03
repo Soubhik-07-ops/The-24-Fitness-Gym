@@ -49,7 +49,9 @@ export default function Testimonials() {
 
                 if (classesError) throw classesError
 
-                setClasses(classesData || [])
+                // Normalize ids (Postgres bigint may be returned as string)
+                const classesNormalized = (classesData || []).map((c: any) => ({ ...c, id: Number(c.id) }))
+                setClasses(classesNormalized)
 
                 // Fetch all approved reviews for carousel
                 const { data: reviewsData, error: reviewsError } = await supabase
@@ -93,7 +95,10 @@ export default function Testimonials() {
                     // Combine reviews with profiles and class names
                     reviewsWithUserData = reviewsData.map((review): Review => {
                         const userProfile = profilesData?.find(profile => profile.id === review.user_id)
-                        const classInfo = classesData?.find(cls => cls.id === review.class_id)
+
+                        // Ensure we compare the same types (normalize review.class_id as number when possible)
+                        const reviewClassId = typeof review.class_id === 'string' ? Number(review.class_id) : review.class_id
+                        const classInfo = classesData?.find(cls => Number(cls.id) === Number(reviewClassId))
 
                         return {
                             ...review,
@@ -225,7 +230,7 @@ export default function Testimonials() {
                         Real Stories
                     </h2>
                     <p className={styles.subtitle}>
-                        Hear what our members are saying about their fitness journey at 24 Fitness.
+                        Hear what our members are saying about their fitness journey at The 24 Fitness.
                     </p>
 
                     {/* Real Reviews Counter */}

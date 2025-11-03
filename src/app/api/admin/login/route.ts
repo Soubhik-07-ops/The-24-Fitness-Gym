@@ -2,8 +2,15 @@
 // IMPROVED VERSION with proper cookie handling
 
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
 import { verifyPassword, createAdminSession } from '@/lib/adminAuth';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+const serverSupabase = createClient(supabaseUrl || '', supabaseServiceKey || '', {
+    auth: { autoRefreshToken: false, persistSession: false }
+});
 
 // In-memory rate limiter (simple version)
 const loginAttempts = new Map<string, { count: number; resetTime: number }>();
@@ -49,13 +56,14 @@ export async function POST(request: NextRequest) {
         }
 
         // Fetch admin by email
-        const { data: admin, error } = await supabase
+        const { data: admin, error } = await serverSupabase
             .from('admins')
             .select('id, email, password_hash, full_name, role, is_active')
             .eq('email', email)
             .single();
 
         if (error || !admin) {
+            console.error('Admin fetch error:', error);
             return NextResponse.json(
                 { error: 'Invalid credentials' },
                 { status: 401 }
@@ -83,7 +91,7 @@ export async function POST(request: NextRequest) {
         const token = await createAdminSession(admin.id);
 
         // Update last login
-        await supabase
+        await serverSupabase
             .from('admins')
             .update({ last_login: new Date().toISOString() })
             .eq('id', admin.id);
