@@ -1,5 +1,6 @@
 // src/app/layout.tsx (FINAL SIMPLE VERSION)
 import './globals.css';
+import RealtimeNotifications from '@/components/Notifications/RealtimeNotifications';
 import { Inter } from 'next/font/google';
 import { AdminAuthProvider } from '@/contexts/AdminAuthContext';
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AdminAuthProvider>
           {children}
+          <RealtimeNotifications mode="user" />
         </AdminAuthProvider>
       </body>
     </html>

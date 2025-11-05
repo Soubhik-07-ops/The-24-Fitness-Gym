@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Dumbbell, MapPin, Phone, Mail, Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
 import styles from './Footer.module.css'
 
@@ -19,16 +20,16 @@ export default function Footer() {
                             mind, and life with state-of-the-art equipment and expert guidance.
                         </p>
                         <div className={styles.socialLinks}>
-                            <a href="#" className={styles.socialLink} aria-label="Facebook">
+                            <a href="https://www.facebook.com/share/1GfHNP7Pus/" className={styles.socialLink} aria-label="Facebook" target="_blank">
                                 <Facebook size={20} />
                             </a>
-                            <a href="#" className={styles.socialLink} aria-label="Twitter">
+                            <a href="#" className={styles.socialLink} aria-label="Twitter" target="_blank">
                                 <Twitter size={20} />
                             </a>
-                            <a href="#" className={styles.socialLink} aria-label="Instagram">
+                            <a href="https://www.instagram.com/healthy_hustler_27?utm_source=qr&igsh=ZndlOHZmN2Fzd2M2" className={styles.socialLink} aria-label="Instagram" target="_blank">
                                 <Instagram size={20} />
                             </a>
-                            <a href="#" className={styles.socialLink} aria-label="YouTube">
+                            <a href="https://youtube.com/@the24fitness?si=9hOxMV5hvG9Wd7rV" className={styles.socialLink} aria-label="YouTube" target="_blank">
                                 <Youtube size={20} />
                             </a>
                         </div>
@@ -38,11 +39,11 @@ export default function Footer() {
                     <div className={styles.footerSection}>
                         <h3>Quick Links</h3>
                         <div className={styles.footerLinks}>
-                            <a href="#home" className={styles.footerLink}>Home</a>
-                            <a href="#features" className={styles.footerLink}>Features</a>
-                            <a href="#membership" className={styles.footerLink}>Membership</a>
-                            <a href="#trainers" className={styles.footerLink}>Trainers</a>
-                            <a href="#testimonials" className={styles.footerLink}>Success Stories</a>
+                            <Link href="/" className={styles.footerLink}>Home</Link>
+                            <Link href="/features" className={styles.footerLink}>Features</Link>
+                            <Link href="/membership" className={styles.footerLink}>Membership</Link>
+                            <Link href="/trainers" className={styles.footerLink}>Trainers</Link>
+                            <Link href="/contact" className={styles.footerLink}>Contact</Link>
                         </div>
                     </div>
 
@@ -64,15 +65,17 @@ export default function Footer() {
                         <div className={styles.contactInfo}>
                             <div className={styles.contactItem}>
                                 <MapPin size={18} />
-                                <span>123 Fitness Street, Gym City, GC 12345</span>
+                                <a href="https://maps.app.goo.gl/uoNrsabeKA6xAAMp6" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                                    Digwadih No. 10, near Gobinda sweets, Old SBI Building
+                                </a>
                             </div>
                             <div className={styles.contactItem}>
                                 <Phone size={18} />
-                                <span>(555) 123-4567</span>
+                                <a href="tel:8084548055" className={styles.contactLink}>8084548055</a>
                             </div>
                             <div className={styles.contactItem}>
                                 <Mail size={18} />
-                                <span>info@24fitnessgym.com</span>
+                                <a href="mailto:The24ditness8055@gmail.com" className={styles.contactLink}>The24ditness8055@gmail.com</a>
                             </div>
                             <div className={styles.contactItem}>
                                 <Dumbbell size={18} />

@@ -14,14 +14,18 @@ import {
     LogOut,
     Menu,
     X,
-    Home
+    Home,
+    MessageSquareDashedIcon
 } from 'lucide-react';
 import { useAdminAuth } from '@/contexts/AdminAuthContext';
+import RealtimeNotifications from '@/components/Notifications/RealtimeNotifications';
+import NotificationBell from '@/components/Notifications/NotificationBell';
 import styles from './admin.module.css';
 
 const navigation = [
     { name: 'Dashboard', href: '/admin', icon: BarChart3 },
     { name: 'Users', href: '/admin/users', icon: Users },
+    { name: 'Messages', href: '/admin/messages', icon: MessageSquareDashedIcon },
     { name: 'Classes', href: '/admin/classes', icon: Calendar },
     { name: 'Reviews', href: '/admin/reviews', icon: MessageSquare },
     { name: 'Bookings', href: '/admin/bookings', icon: BookOpen },
@@ -141,6 +145,7 @@ export default function AdminLayout({
                         </h1>
 
                         <div className={styles.headerActions}>
+                            <NotificationBell mode="admin" />
                             <span className={styles.welcomeText}>
                                 Welcome, {admin.email}
                             </span>
@@ -151,6 +156,7 @@ export default function AdminLayout({
                 {/* Page Content */}
                 <main className={styles.content}>
                     {children}
+                    <RealtimeNotifications mode="admin" />
                 </main>
             </div>
         </div>

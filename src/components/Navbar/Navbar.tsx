@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { type User } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import NotificationBell from '@/components/Notifications/NotificationBell'
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
@@ -35,7 +36,7 @@ export default function Navbar() {
 
         const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
             setUser(session?.user ?? null)
-            router.refresh()
+            // Removed router.refresh() to prevent unnecessary re-renders
         })
 
         // ✅ Listen for resize AFTER mount
@@ -94,6 +95,7 @@ export default function Navbar() {
                             Dashboard
                         </button>
                     )}
+                    {user && <NotificationBell mode="user" />}
                     {user ? (
                         <button onClick={handleLogout} className={styles.joinButton}>
                             Log Out
@@ -145,6 +147,11 @@ export default function Navbar() {
                                 >
                                     Dashboard
                                 </button>
+                            )}
+                            {user && (
+                                <div style={{ padding: '12px 16px', display: 'flex', justifyContent: 'center' }}>
+                                    <NotificationBell mode="user" />
+                                </div>
                             )}
                             <div className={styles.mobileButtonContainer}>
                                 {user ? (

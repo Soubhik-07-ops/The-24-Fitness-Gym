@@ -1,0 +1,86 @@
+.container {
+    padding: 48px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 720px;
+    background: #0f0f10;
+    border: 1px solid #212127;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.title {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+    color: #fff;
+}
+
+.subtitle {
+    color: #b0b0b5;
+    margin: 0 0 24px 0;
+}
+
+.notice {
+    background: #16161a;
+    border: 1px solid #25252b;
+    color: #d0d0d5;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.loading {
+    color: #cfcfd4;
+}
+
+.pendingBox {
+    background: #101116;
+    border: 1px dashed #3a3a45;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.pendingText {
+    color: #e1e1e6;
+}
+
+.form {
+    display: grid;
+    gap: 16px;
+}
+
+.inputGroup {
+    display: grid;
+    gap: 8px;
+}
+
+.inputGroup label {
+    color: #d8d8de;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    background: #0c0c0f;
+    color: #f2f2f5;
+    border: 1px solid #2a2a33;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.submitButton {
+    background: linear-gradient(90deg, #ff5b37 0%, #ff9a3c 100%);
+    color: #0b0b0c;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.error { color: #ff6b6b; }
+.success { color: #7ee787; }
+
+

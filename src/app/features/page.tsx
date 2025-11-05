@@ -12,7 +12,6 @@ export default function FeaturesPage() {
     return (
         <>
             <Navbar />
-            <br />
             <main>
                 <Features />
                 {/* You can add more sections specific to the features page here */}

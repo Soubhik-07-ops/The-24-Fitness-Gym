@@ -1,0 +1,221 @@
+.contactPage {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0a0a0b 0%, #0f0f10 100%);
+    padding-top: 72px; /* Account for fixed navbar */
+}
+
+/* Hero Section */
+.heroSection {
+    padding: 80px 16px 60px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 91, 55, 0.1) 0%, rgba(255, 154, 60, 0.1) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.heroTitle {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff5b37 0%, #ff9a3c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.heroSubtitle {
+    font-size: 18px;
+    color: #b0b0b5;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Info Section */
+.infoSection {
+    padding: 60px 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.infoCard {
+    background: #0f0f10;
+    border: 1px solid #212127;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.infoCard:hover {
+    border-color: #ff5b37;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 91, 55, 0.15);
+}
+
+.infoIcon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #ff5b37 0%, #ff9a3c 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0b;
+}
+
+.infoTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.infoText {
+    font-size: 14px;
+    color: #b0b0b5;
+    line-height: 1.6;
+}
+
+/* Form Section */
+.formSection {
+    padding: 60px 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Details Section */
+.detailsSection {
+    padding: 60px 16px 80px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detailCard {
+    background: #0f0f10;
+    border: 1px solid #212127;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.detailCard:hover {
+    border-color: #ff5b37;
+    background: #141416;
+}
+
+.detailIcon {
+    color: #ff5b37;
+    margin-bottom: 16px;
+}
+
+.detailTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.detailText {
+    font-size: 14px;
+    color: #b0b0b5;
+    margin-bottom: 4px;
+}
+
+.detailLink {
+    font-size: 14px;
+    color: #ff9a3c;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+.detailLink:hover {
+    color: #ff5b37;
+    text-decoration: underline;
+}
+
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    min-height: 300px;
+}
+
+.loadingSpinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 91, 55, 0.2);
+    border-top: 4px solid #ff5b37;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loadingText {
+    color: #b0b0b5;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 36px;
+    }
+
+    .heroSubtitle {
+        font-size: 16px;
+    }
+
+    .infoGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .detailsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contactPage {
+        padding-top: 64px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detailsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .heroSection {
+        padding: 60px 16px 40px;
+    }
+}
+
