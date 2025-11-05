@@ -111,7 +111,7 @@ export default function ReviewsList({
                                             <button
                                                 onClick={() => {
                                                     if (confirm('Are you sure you want to delete your review?')) {
-                                                        onDeleteReview(review.id);
+                                                        onDeleteReview(Number(review.id));
                                                     }
                                                 }}
                                                 className={styles.deleteButton}
